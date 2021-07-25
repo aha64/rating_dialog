@@ -35,7 +35,7 @@ class RatingDialog extends StatelessWidget {
   final TextStyle? titleStyle;
 
   //message text style
-  final TextStyle messageStyle;
+  final TextStyle? messageStyle;
 
   /// Returns a RatingDialogResponse with user's rating and comment values
   final Function(RatingDialogResponse) onSubmitted;
