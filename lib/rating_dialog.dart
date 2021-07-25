@@ -31,25 +31,32 @@ class RatingDialog extends StatelessWidget {
   /// The submit button's label/text
   final String submitButton;
 
+  //title text style
+  final TextStyle? titleStyle;
+
+  //message text style
+  final TextStyle messageStyle;
+
   /// Returns a RatingDialogResponse with user's rating and comment values
   final Function(RatingDialogResponse) onSubmitted;
 
   /// called when user cancels/closes the dialog
   final Function? onCancelled;
 
-  const RatingDialog({
-    required this.title,
-    this.message,
-    this.image,
-    required this.submitButton,
-    required this.onSubmitted,
-    this.ratingColor = Colors.amber,
-    this.onCancelled,
-    this.force = false,
-    this.initialRating = 1,
-    this.enableComment = true,
-    this.commentHint = 'Tell us your comments',
-  });
+  const RatingDialog(
+      {required this.title,
+      this.message,
+      this.image,
+      required this.submitButton,
+      required this.onSubmitted,
+      this.ratingColor = Colors.amber,
+      this.onCancelled,
+      this.force = false,
+      this.initialRating = 1,
+      this.enableComment = true,
+      this.commentHint = 'Tell us your comments',
+      this.titleStyle,
+      this.messageStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -76,17 +83,21 @@ class RatingDialog extends StatelessWidget {
                 Text(
                   title,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: titleStyle != null
+                      ? titleStyle
+                      : TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                 ),
                 const SizedBox(height: 15),
                 message != null
                     ? Text(
                         message!,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 15),
+                        style: messageStyle != null
+                            ? messageStyle
+                            : TextStyle(fontSize: 15),
                       )
                     : Container(),
                 const SizedBox(height: 10),
